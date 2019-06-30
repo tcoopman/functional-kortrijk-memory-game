@@ -1,30 +1,31 @@
-type state = {
-    grid: array((int, Card.state))
-};
-type action = Turn(int);
+type state = {grid: array((int, Card.state))};
+type action =
+  | Turn(int);
 
 let reducer = (state, action) => {
-    switch (action) {
-        | Turn(i) => 
-        let newGrid = state.grid->Belt.Array.map(((index, cardState)) => {
-            if (index == i) {
-                (index, Card.Visible)
-            } else {
-                (index, cardState)
-            }
-        });
-        {...state, grid: newGrid}
-    };
+  switch (action) {
+  | Turn(i) =>
+    let newGrid =
+      state.grid
+      ->Belt.Array.map(((index, cardState)) =>
+          if (index == i) {
+            (index, Card.Visible);
+          } else {
+            (index, cardState);
+          }
+        );
+    {...state, grid: newGrid};
+  };
 };
 
 let initialState = () => {
-    let grid = Belt.Array.range(0, 15) -> Belt.Array.map(i => (i, Card.Hidden));
-    {grid: grid}
+  let grid = Belt.Array.range(0, 15)->Belt.Array.map(i => (i, Card.Hidden));
+  {grid: grid};
 };
 
 [@react.component]
 let make = () => {
-    let (state, dispatch) = React.useReducer(reducer, initialState());
+  let (state, dispatch) = React.useReducer(reducer, initialState());
   let cards =
     state.grid
     ->Belt.Array.map(((i, cardState)) =>
@@ -39,5 +40,9 @@ let make = () => {
       <h1> {ReasonReact.string("Functional Kortrijk Memory")} </h1>
     </div>
     <div className="board"> {cards |> ReasonReact.array} </div>
+    <div className="controls">
+      <div className="player player-active">{ReasonReact.string("Player 1")}</div>
+      <div className="player player-inactive">{ReasonReact.string("Player 2")}</div>
+    </div>
   </div>;
 };

@@ -54,7 +54,13 @@ function Memory(Props) {
                   className: "header"
                 }, React.createElement("h1", undefined, "Functional Kortrijk Memory")), React.createElement("div", {
                   className: "board"
-                }, cards));
+                }, cards), React.createElement("div", {
+                  className: "controls"
+                }, React.createElement("div", {
+                      className: "player player-active"
+                    }, "Player 1"), React.createElement("div", {
+                      className: "player player-inactive"
+                    }, "Player 2")));
 }
 
 var make = Memory;

@@ -32,6 +32,29 @@
   background: blue;
 }
 
+.card-done {
+    background: rgb(200, 180, 30)
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.player {
+    border-radius: 4px;
+    margin-right: 15px;
+    padding: 10px;
+}
+
+.player-active {
+    border: 1px solid green;
+}
+.player-inactive {
+    border: 1px solid gray;
+}
+
 .sprite {
   background: url("images.png") no-repeat;
   width: 110px; /* Icon width */
