@@ -9,7 +9,7 @@ module.exports = {
   entry: { index: "./src/Index.bs.js", style: "./src/style.css" },
   mode: isProd ? "production" : "development",
   output: {
-    path: outputDir,
+    path: outputDir
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -38,6 +38,15 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           { loader: "css-loader", options: { importLoaders: 1 } }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {}
+          }
         ]
       }
     ]
